@@ -70,7 +70,7 @@ public class MyStackTest {
 	}
 	
 	@After
-	public void setdown()
+	public void teardown()
 	{
 		myStack = null;
 	}
