@@ -3,7 +3,6 @@ package projekt1zad1;
 import org.junit.Assert.*;
 import org.junit.Before;
 
-
 import org.junit.After;
 
 import static org.hamcrest.MatcherAssert.*;
@@ -14,12 +13,11 @@ import org.junit.Test;
 import projekt1zad1.MyStack;;
 
 public class MyStackTest {
-	
+
 	private MyStack myStack;
-	
+
 	@Before
-	public void setup()
-	{
+	public void Setup() {
 		myStack = new MyStack();
 	}
 
@@ -30,7 +28,7 @@ public class MyStackTest {
 		myStack.MyPush(4);
 		assertThat(myStack.getStack(), contains(3, 7, 4));
 	}
-	
+
 	@Test
 	public void MyPopTest() {
 		myStack.MyPush(8);
@@ -41,7 +39,7 @@ public class MyStackTest {
 		assertThat(myStack.getStack(), contains(8, 9));
 		assertThat(myStack.getStack(), not(contains(4)));
 	}
-	
+
 	@Test
 	public void IsNullTest() {
 		myStack = new MyStack();
@@ -49,35 +47,45 @@ public class MyStackTest {
 		myStack.MyPush(0);
 		assertThat(myStack.IsNull(), equalTo(false));
 	}
-	
+
 	@Test
 	public void MyTopTest() {
 		myStack.MyPush(4);
 		assertThat(myStack.MyTop(), is(4));
 	}
-	
+
 	@Test(expected = NullPointerException.class)
-	public void MyTopTestIfStachIsEmpty() {
+	public void MyTopIfStachIsEmptyTest() {
 		myStack = null;
 		myStack.MyTop();
 	}
-	
-	@Test
-	public void IsNullThrowsException()
-	{
-		try
-		{
-			myStack = null;
-			myStack.IsNull();
-		} catch(NullPointerException e)
-		{
-			assertThat(true, is(true));
-		}
+
+	@Test(expected = NullPointerException.class)
+	public void MyPopIfStachIsEmptyTest() {
+		myStack = null;
+		myStack.MyTop();
 	}
-	
+
+	@Test(expected = NullPointerException.class)
+	public void IsNullThrowsExceptionTest() {
+		myStack = null;
+		myStack.IsNull();
+	}
+
+	@Test
+	public void MyPushMaxValueTest() {
+		myStack.MyPush(Integer.MAX_VALUE);
+		assertThat(myStack.MyTop(), is(Integer.MAX_VALUE));
+	}
+
+	@Test
+	public void MyPushMinValueTest() {
+		myStack.MyPush(Integer.MIN_VALUE);
+		assertThat(myStack.MyTop(), is(Integer.MIN_VALUE));
+	}
+
 	@After
-	public void teardown()
-	{
+	public void Teardown() {
 		myStack = null;
 	}
 
