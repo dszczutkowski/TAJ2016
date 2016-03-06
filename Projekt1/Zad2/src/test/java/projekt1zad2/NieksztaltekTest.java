@@ -15,6 +15,7 @@ public class NieksztaltekTest {
 	public void Start() {
 		psikus = new PsikusImpl();
 	}
+
 	@Test
 	public void NieksztaltekZmieniaCyfryTest() {
 		assertThat(psikus.Nieksztaltek(1), is(1));
@@ -31,8 +32,7 @@ public class NieksztaltekTest {
 	}
 
 	@After
-	public void Koniec()
-	{
+	public void Koniec() {
 		psikus = null;
 	}
 }
