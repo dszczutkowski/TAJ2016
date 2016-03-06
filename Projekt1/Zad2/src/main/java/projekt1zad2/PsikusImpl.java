@@ -1,6 +1,23 @@
 package projekt1zad2;
 
+import java.util.Random;
+
 public class PsikusImpl implements Psikus {
+
+	Random rnd = new Random();
+	private int liczba;
+
+	public void ustawLiczba(int liczba) {
+		this.liczba = liczba;
+	}
+
+	public PsikusImpl() {
+
+	}
+
+	public PsikusImpl(int liczba) {
+		this.liczba = liczba;
+	}
 
 	public Integer CyfroKrad(Integer liczba) {
 		// TODO Auto-generated method stub
