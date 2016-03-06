@@ -17,11 +17,18 @@ public class HultajChochlaTest {
 	}
 
 	@Test(expected = NieudanyPsikusException.class)
-	public void NieudanyPsikusExceptionTest() throws NieudanyPsikusException {
+	public void NieudanyPsikusException1Test() throws NieudanyPsikusException {
 		psikus.HultajChochla(1);
+	}
+	
+	@Test(expected = NieudanyPsikusException.class)
+	public void NieudanyPsikusException0Test() throws NieudanyPsikusException {
 		psikus.HultajChochla(0);
+	}
+	
+	@Test(expected = NieudanyPsikusException.class)
+	public void NieudanyPsikusExceptionM1Test() throws NieudanyPsikusException {
 		psikus.HultajChochla(-1);
-		psikus.HultajChochla(null);
 	}
 
 	@Test

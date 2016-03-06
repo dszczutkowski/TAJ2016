@@ -18,6 +18,7 @@ public class NieksztaltekTest {
 
 	@Test
 	public void NieksztaltekZmieniaCyfryTest() {
+		assertThat(psikus.Nieksztaltek(0), is(0));
 		assertThat(psikus.Nieksztaltek(1), is(1));
 		assertThat(psikus.Nieksztaltek(13), is(18));
 		assertThat(psikus.Nieksztaltek(-13), is(-18));
