@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 
-import static org.hamcrest.CoreMatchers.*;
-
 import org.junit.Test;
 
 public class MessageAppTest {
