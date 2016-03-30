@@ -1,4 +1,4 @@
-Calculator story
+Calculator story - parametrized
 
 Scenario: addition parametrized
 Given a variable x by value 3
@@ -19,4 +19,3 @@ Scenario: divide parametrized
 Given a variable x by value 18
 Given a variable y by value 3
 Then  div should be equal 6
-
