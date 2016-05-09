@@ -45,7 +45,7 @@ public class FormTest {
 	}
 	
 	@Test
-	public void loginAndAddSthTest()
+	public void loginAddDeleteTest()
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		login();
@@ -60,7 +60,36 @@ public class FormTest {
 		element.sendKeys("testowy");
 		element.findElement(By.xpath("//input[@value='Utwórz']")).click();
         element = driver.findElement(By.xpath("//table/tbody/tr[last()]"));
-        assertEquals(element.getText(), "test Name testowy");
+        assertTrue(element.getText().contains("test Name"));
+        assertTrue(element.getText().contains("testowy"));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        element = driver.findElement(By.xpath("//tbody/tr[last()]/td[last()]/a[3]"));
+        element.click();
+        element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Delete']")));
+        element.click();
+        element = driver.findElement(By.xpath("//table/tbody/tr[last()]"));
+        assertFalse(element.getText().contains("test Name"));
+        assertFalse(element.getText().contains("testowy"));
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText("Log")));
+		element.click();
+	}
+	
+	@Test
+	public void loginWrongAddSthTest()
+	{
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		login();
+		driver.get("http://dszczutkowski-001-site1.ctempurl.com/Zamowienia");
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/Orders/Create']")));
+		element.click();
+		Select droplist = new Select(driver.findElement(By.id("MealID")));   
+		droplist.selectByVisibleText("test Name");
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.id("SeatNumber")));
+		element.sendKeys("okokoko");
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.id("PaymentMethod")));
+		element.sendKeys("testowy");
+		element.findElement(By.xpath("//input[@value='Utwórz']")).click();
+		assertEquals(driver.getTitle(), "Create - Dawid Szczutkowski MVC");
 		element = wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText("Log")));
 		element.click();
 	}
