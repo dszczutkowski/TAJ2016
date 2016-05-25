@@ -1,0 +1,9 @@
+Scenariusz: Login
+Dany u¿ytkownik jest na stronie g³ównej
+Kiedy u¿ytkownik przejdzie na stronê logowania i poda login i has³o
+Wtedy u¿ytkownik jest zalogowany
+
+Scenariusz: Dodawanie posi³ku
+Dany u¿ytkownik jest na stronie posi³ków
+Kiedy u¿ytkownik przejdzie na stronê posi³ków doda nowy posi³ek
+Wtedy posi³ek jest dodany
