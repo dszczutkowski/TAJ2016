@@ -21,14 +21,14 @@ public class MealsSteps extends Steps {
 	
 	@Given("user is on home page")
 	@Alias("u¿ytkownik jest na stronie g³ównej")
-    public void userIsOnInteriaPage(){        
+    public void userIsOnHomePage(){        
         pages.meals().open();
         Assert.assertEquals("http://dszczutkowski-001-site1.ctempurl.com/", pages.meals().getCurrentUrl());
     }
 	
 	@When("user get login page and enter login and password")
     @Alias("u¿ytkownik przejdzie na stronê logowania i poda login i has³o")
-    public void userLoginToInteria(){
+    public void userLogin(){
     	pages.meals().findElement(By.id("loginLink")).click();
         pages.meals().findElement(By.id("Email")).sendKeys("abc@gmail.com");
         pages.meals().findElement(By.id("Password")).sendKeys("Asd!23");
@@ -37,7 +37,30 @@ public class MealsSteps extends Steps {
     
     @Then("user is logged in")
     @Alias("u¿ytkownik jest zalogowany")
-    public void userIsLoggedInteria(){
+    public void userLoggedIn(){
     	Assert.assertEquals("Strona G³ówna - Dawid Szczutkowski MVC", pages.meals().getTitle());
     }
-}
+    
+    @When("user get on meals page and add new meal")
+    @Alias("u¿ytkownik przejdzie na stronê posi³ków doda nowy posi³ek")
+    public void userIsAddingMeal(){        
+        pages.meals().findElement(By.xpath("//a[@href='/Posilki']")).click();
+        pages.meals().findElement(By.xpath("//a[@href='/Meals/Create']")).click();
+        pages.meals().findElement(By.id("Name")).sendKeys("test Name");
+        pages.meals().findElement(By.id("Price")).sendKeys("12345");
+        pages.meals().findElement(By.xpath("//input[@value='Create']")).click();
+
+    	Assert.assertEquals("Posi³ki - Dawid Szczutkowski MVC", pages.meals().getTitle());
+    }
+    
+    @Then("meal is added")
+    @Alias("posi³ek jest dodany")
+    public void userAddedMeal(){
+
+        String result = pages.meals().findElement(By.xpath("//table/tbody/tr[last()]")).getText();
+        Assert.assertTrue(result.contains("test Name $12345"));
+        
+        pages.meals().close();
+    }
+    
+}    
